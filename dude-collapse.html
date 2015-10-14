@@ -1,0 +1,68 @@
+<!--
+Copyright (c) 2015 DudeTeam. All rights reserved.
+-->
+<link rel="import" href="../polymer/polymer.html">
+<!--
+`dude-collapse` is a Polymer element to provide a collapsable content pane.
+
+@group dude Elements
+@element dude-collapse
+@demo demo/index.html
+-->
+<dom-module id="dude-collapse">
+<style>
+	.collapsed {
+		display: none;
+	}
+</style>
+<template>
+	<div  id="title" on-click="_toggleCollapse">
+		<content select="#title"></content>
+	</div>
+	<div id="content">
+		<content select="#content"></content>
+	</div>
+</template>
+<script>
+    Polymer({
+        is: "dude-collapse",
+
+        listeners: {
+        	"collapsed-changed": "_collapseChanged"
+        },
+
+        properties: {
+        	/**
+        	* True if the content is collapsed, False otherwise
+        	*/
+        	"collapsed": {
+        		"type": Boolean,
+        		"value": false,
+        		"notify": true
+        	}
+        },
+
+        /**
+		* Toggle the collapse state
+		* @delegate
+		* @private
+		*/
+        _toggleCollapse: function () {
+			this.set("collapsed", !this.collapsed);
+        },
+
+        /**
+        * Called when the collapsed state changes
+        * @delegate
+		* @private
+        */
+        _collapseChanged: function() {
+        	if (this.collapsed) {
+        		this.$.content.classList.add("collapsed");
+        	} else {
+        		this.$.content.classList.remove("collapsed");
+        	}
+        }
+    });
+</script>
+</dom-module>

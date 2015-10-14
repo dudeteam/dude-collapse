@@ -1,0 +1,27 @@
+{
+  "name": "dude-collapse",
+  "version": "0.0.1",
+  "authors": [
+    "Jonathan Picques <jonathan.picques@gmail.com>"
+  ],
+  "description": "A Polymer element to provide a collapsable content pane.",
+  "keywords": [
+    "dude",
+    "state"
+  ],
+  "main": "dude-collapse.html",
+  "license": "MIT",
+  "homepage": "https://github.com/dudeteam/dude-collapse/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  }
+}
