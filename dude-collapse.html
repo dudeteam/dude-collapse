@@ -10,59 +10,124 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
 @demo demo/index.html
 -->
 <dom-module id="dude-collapse">
-<style>
-	.collapsed {
-		display: none;
-	}
-</style>
-<template>
-	<div  id="title" on-click="_toggleCollapse">
-		<content select="#title"></content>
-	</div>
-	<div id="content">
-		<content select="#content"></content>
-	</div>
-</template>
-<script>
-    Polymer({
-        is: "dude-collapse",
-
-        listeners: {
-        	"collapsed-changed": "_collapseChanged"
-        },
-
-        properties: {
-        	/**
-        	* True if the content is collapsed, False otherwise
-        	*/
-        	"collapsed": {
-        		"type": Boolean,
-        		"value": false,
-        		"notify": true
-        	}
-        },
-
-        /**
-		* Toggle the collapse state
-		* @delegate
-		* @private
-		*/
-        _toggleCollapse: function () {
-			this.set("collapsed", !this.collapsed);
-        },
-
-        /**
-        * Called when the collapsed state changes
-        * @delegate
-		* @private
-        */
-        _collapseChanged: function() {
-        	if (this.collapsed) {
-        		this.$.content.classList.add("collapsed");
-        	} else {
-        		this.$.content.classList.remove("collapsed");
-        	}
+    <style>
+        .collapsed {
+            display: none;
         }
-    });
-</script>
+
+        #title {
+            color: var(--dude-title-text-color);
+            font-family: var(--dude-primary-text-font);
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #222222;
+            margin-bottom: 10px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #title i {
+            color: var(--dude-content-text-color);
+            font-size: .8em;
+            padding-right: 5px;
+            width: 10px;
+        }
+    </style>
+    <template>
+        <div id="title" unselectable="on" on-click="_toggleCollapse">
+            <i unselectable="on" class$="[[ collapseIconClass ]]"></i>
+            <span unselectable="on">[[ title ]]</span>
+        </div>
+        <div id="content">
+            <content></content>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "dude-collapse",
+
+            listeners: {
+                "collapsed-changed": "_collapseChanged"
+            },
+
+            properties: {
+                /**
+                 * True if the content is collapsed, False otherwise
+                 */
+                "collapsed": {
+                    "type": Boolean,
+                    "value": false,
+                    "notify": true
+                },
+
+                /**
+                 * Title of the collapse
+                 */
+                "title": {
+                    "type": "String",
+                    "value": ""
+                },
+
+                /**
+                 * The icon when the element is collapsed
+                 */
+                "iconCollapsed": {
+                    "type": String,
+                    "value": "fa fa-chevron-right"
+                },
+
+                /**
+                 * The icon when the element is expanded
+                 */
+                "iconExpanded": {
+                    "type": String,
+                    "value": "fa fa-chevron-down"
+                },
+
+                /**
+                 * Icon class whether the element is collapsed or expanded
+                 */
+                "collapseIconClass": {
+                    "type": String
+                }
+            },
+
+            /**
+             * Called when the element is ready
+             * @delegate
+             */
+            ready: function () {
+                this._collapseChanged(this.collapsed, this.collapsed);
+            },
+
+            /**
+             * Called when the collapsed state changes
+             * @delegate
+             * @private
+             */
+            _collapseChanged: function () {
+                if (this.collapsed) {
+                    this.$.content.classList.add("collapsed");
+                } else {
+                    this.$.content.classList.remove("collapsed");
+                }
+                this.set("collapseIconClass", this.collapsed ? this.iconCollapsed : this.iconExpanded);
+            },
+
+            /**
+             * Toggle the collapse state
+             * @delegate
+             * @private
+             */
+            _toggleCollapse: function () {
+                this.set("collapsed", !this.collapsed);
+            }
+        });
+    </script>
 </dom-module>
