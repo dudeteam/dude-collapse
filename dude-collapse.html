@@ -16,6 +16,7 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
         }
 
         #title {
+            padding-left: 10px;
             color: var(--dude-title-text-color);
             font-family: var(--dude-primary-text-font);
             font-size: 1.2em;
@@ -45,7 +46,7 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
     <template>
         <div id="title" unselectable="on" on-click="_toggleCollapse">
             <i unselectable="on" class$="[[ collapseIconClass ]]"></i>
-            <span unselectable="on">[[ title ]]</span>
+            <span unselectable="on">[[ heading ]]</span>
         </div>
         <div id="content">
             <content></content>
@@ -72,7 +73,7 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
                 /**
                  * Title of the collapse
                  */
-                "title": {
+                "heading": {
                     "type": "String",
                     "value": ""
                 },
