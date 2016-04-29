@@ -1,6 +1,6 @@
 {
   "name": "dude-collapse",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     "Jonathan Picques <jonathan.picques@gmail.com>"
   ],
@@ -18,11 +18,11 @@
     "/demo/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "^1.4.0",
+    "dude-style": "^0.2.2"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "web-component-tester": "*",
-    "dude-style": "~0.0.1"
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.5",
+    "web-component-tester": "^4.2.2"
   }
 }
